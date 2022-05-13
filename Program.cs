@@ -1,13 +1,12 @@
 using System.Globalization;
 using zad9.DAL;
-
+using zad9.Models;
 var builder = WebApplication.CreateBuilder(args);
 //IConfiguration Configuration { get; }
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient( new ServiceDescriptor(typeof(IProductDB), new
-ProductXmlDB(Configuration)));
+builder.Services.AddTransient<IProductDB, ProductXmlDB>();
 
 var app = builder.Build();
 
@@ -19,9 +18,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//var cultureInfo = new CultureInfo("en-US");
-//CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
-//CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;    
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
