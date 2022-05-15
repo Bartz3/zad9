@@ -45,38 +45,72 @@ namespace zad9.DAL
         public Product Get(int _id)
         {
 
-            SqlConnection con = new SqlConnection(StoreDBcs);
-            SqlCommand cmd = new SqlCommand("sp_productGet", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+            //SqlConnection con = new SqlConnection(StoreDBcs);
+            //SqlCommand cmd = new SqlCommand("sp_productGet", con);
+            //cmd.CommandType = CommandType.StoredProcedure;
 
-            con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
+            //con.Open();
+
+            //SqlParameter productID_SqlParam = new SqlParameter("@productID",
+            //SqlDbType.Int);
+            //productID_SqlParam.Value = _id;
+            //cmd.Parameters.Add(productID_SqlParam);
+            //SqlDataReader reader = cmd.ExecuteReader();
+
+            List<Product> productList = new List<Product>();
+            productList = List();
             Product _product =new Product();
-            cmd.Parameters.AddWithValue("@Id", _product.id);
-
-            while (reader.Read())
+            foreach (var product in productList)
             {
-                _product.id = int.Parse(reader["Id"].ToString());
-                if (_product.id == _id)
+                if (product.id == _id)
                 {
-                    _product.name = reader["Name"].ToString();
-                    _product.price = Decimal.Parse(reader["Price"].ToString());
                     _product.id = _id;
-                    break;
+                    _product.name = product.name;
+                    _product.price = product.price;
                 }
-
             }
-            reader.Close(); con.Close();
+            
             return _product;
         }
         public int Add(Product _product)
         {
-            throw new NotImplementedException();
+            SqlConnection con = new SqlConnection(StoreDBcs);
+            SqlCommand cmd = new SqlCommand("sp_productAdd", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter name_SqlParam = new SqlParameter("@name", SqlDbType.VarChar,
+            50);
+            name_SqlParam.Value = _product.name;
+            cmd.Parameters.Add(name_SqlParam);
+
+            SqlParameter price_SqlParam = new SqlParameter("@price", SqlDbType.Money);
+            price_SqlParam.Value = _product.price;
+            cmd.Parameters.Add(price_SqlParam);
+
+            SqlParameter productID_SqlParam = new SqlParameter("@productID",
+            SqlDbType.Int);
+            productID_SqlParam.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(productID_SqlParam);
+            con.Open();
+            int numAff = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return 1;
         }
 
         public int Delete(int _id)
         {
-            throw new NotImplementedException();
+            SqlConnection con = new SqlConnection(StoreDBcs);
+            SqlCommand cmd = new SqlCommand("sp_productDelete", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter name_SqlParam = new SqlParameter("@productID", SqlDbType.Int);
+            name_SqlParam.Value = _id;
+            cmd.Parameters.Add(name_SqlParam);
+
+            con.Open();
+            int numAff = cmd.ExecuteNonQuery();
+            con.Close();
+
+            return 1;
         }
 
         public int Update(Product _product)

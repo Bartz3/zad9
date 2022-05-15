@@ -21,7 +21,7 @@ namespace zad9.Pages
 
         public IActionResult OnPost()
         {
-            product.id =0;
+            
             productDB.Add(product);
 
             //return Page();
