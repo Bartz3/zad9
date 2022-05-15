@@ -85,7 +85,6 @@ namespace zad9.DAL
         {
             db.Load("DATA/store.xml");
 
-            string newId = getID().ToString();
 
             XmlNode root = db.SelectSingleNode("store");
             XmlElement product = db.CreateElement("product");
@@ -93,6 +92,7 @@ namespace zad9.DAL
 
 
             XmlAttribute id = db.CreateAttribute("id");
+            string newId = getID().ToString();
             //id.Value = getID().ToString();
             //id.Value = db.SelectNodes("store/product").Count.ToString();
             id.Value = newId;

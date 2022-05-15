@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IProductDB, ProductXmlDB>();
+builder.Services.AddTransient<IProductDB, ProductSqlDB>();
 
 var app = builder.Build();
 
