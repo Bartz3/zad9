@@ -7,12 +7,18 @@ namespace zad9.Pages.Shared
 {
     public class DetailsModel : PageModel
     {
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public Product product { get; set; }
         //public ProductXmlDB pxmldb = new ProductXmlDB(IConfiguration _configuration);
+        IProductDB productDB;
+        public DetailsModel(IProductDB _productDB)
+        {
+            productDB = _productDB;
+        }
 
         public void OnGet(int _id)
         {
+            product = productDB.Get(_id);
             //product = ProductXmlDB
 
         }

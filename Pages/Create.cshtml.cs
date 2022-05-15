@@ -3,25 +3,28 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace zad9.Pages
 {
-    public class DeleteModel : PageModel
+    public class CreateModel : PageModel
     {
-        [BindProperty(SupportsGet =true)]
+        [BindProperty]
         public Product product { get; set; }
 
         IProductDB productDB;
-        public DeleteModel(IProductDB _productDB)
+
+        public CreateModel(IProductDB _productDB)
         {
             productDB = _productDB;
         }
-        public void OnGet(int _id)
+        public void OnGet()
         {
-            product = productDB.Get(_id);
+
         }
 
         public IActionResult OnPost()
         {
-            productDB.Delete(product.id);
+            product.id =0;
+            productDB.Add(product);
 
+            //return Page();
             return RedirectToPage("Index");
         }
     }

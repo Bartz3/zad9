@@ -1,11 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <store>
   <product id="1">
-    <name>siup</name>
-    <price>232.54</price>
+    <name>jaaa</name>
+    <price>34</price>
   </product>
   <product id="2">
     <name>Piłka nożna2</name>
-    <price>325,99</price>
+    <price>399.01</price>
+  </product>
+  <product id="4">
+    <name>marti</name>
+    <price>54.31</price>
+  </product>
+  <product id="5">
+    <name>haloo</name>
+    <price>455</price>
+  </product>
+  <product id="6">
+    <name>test1</name>
+    <price>123</price>
   </product>
 </store>

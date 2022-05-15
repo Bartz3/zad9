@@ -3,4 +3,17 @@
 @{
     ViewData["Title"] = "Szczegóły";
 }
-<h1>Szczegóły produktu @Model.product.name</h1>
+<div>
+<h1>Szczegóły produktu @Model.product.name </h1>
+<br />
+<h4>ID: @Model.product.id</h4>
+<br />
+<h4>Cena: @Model.product.price </h4>
+</div>
+
+<div style="float:left; margin:10px">
+    <a asp-page="Edit" asp-route-_id=@Model.product.id class=" btn btn-primary ">Modyfikuj produkt</a>
+</div>
+<div style="float:left;margin:10px">
+    <a asp-page="Index" class=" btn btn-primary ">Wróć do listy produktów</a>
+</div>

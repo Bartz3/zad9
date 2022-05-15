@@ -5,6 +5,7 @@ namespace zad9.Models
     public class Product
     {
         [Display(Name = "Id")]
+        [Key]
         public int id { get; set; }
 
         [Display(Name = "Nazwa produktu")]
